@@ -1,3 +1,21 @@
+# News API Project
+
+## Overview
+This project provides an interface to fetch and display the latest news articles from various sources using the News API. It allows users to search for news based on keywords, categories, and sources, and retrieve relevant articles in real-time. The application is built to be user-friendly and can be easily integrated into other projects or used as a standalone news aggregator.
+
+## Features
+- **Fetch Latest News**: Retrieve up-to-date news articles from various reliable sources.
+- **Search Functionality**: Search for news articles based on specific keywords or phrases.
+- **Category-Based Filtering**: Filter news by categories such as Technology, Sports, Business, Entertainment, etc.
+- **Responsive Design**: The interface is fully responsive, ensuring a seamless experience on mobile, tablet, and desktop devices.
+
+
+## Technologies Used
+- React.js for frontend development
+- News API for news data retriveval
+- HTML, CSS, JavaScript for development
+- Git for version management
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
