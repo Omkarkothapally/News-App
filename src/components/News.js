@@ -19,15 +19,22 @@ const News=(props)=> {
     props.setProgress(10);
     let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${page}&pageSize=${props.pageSize}`;
     setLoading(true);
+    try{
     let data =await fetch(url);
     props.setProgress(70);
     let parsedData =await data.json();
     props.setProgress(70);
-    setArticles(parsedData.articles)
+    setArticles((prevArticles) => prevArticles.concat(Array.isArray(parsedData.articles) ? parsedData.articles : []));
     setTotalResults(parsedData.totalResults)
     setLoading(false)
     props.setProgress(100);
-  }
+  }catch{
+      console.error('Error fetching news:', error);
+      setArticles([]);
+      setLoading(false);
+      props.setProgress(100);
+    }
+  };
 
   useEffect (()=>{
     updateNews();
@@ -36,10 +43,15 @@ const News=(props)=> {
   const fetchMoreData =async() =>{
     const url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=dbe57b028aeb41e285a226a94865f7a7&page=${page+1}&pageSize=${props.pageSize}`;
     setPage(page+1);
+    try{
     let data =await fetch(url);
     let parsedData =await data.json();
     setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
+  } catch{
+      console.error('Error fetching more news:', error);
+      setArticles((prevArticles) => prevArticles || []);     
+  }
   };
 
     return (
@@ -54,7 +66,7 @@ const News=(props)=> {
        >
         <div className='container'>
           <div className='row'>
-            {articles.map((element)=>{
+            {Array.isArray(articles) && articles.map((element))=>{
                 return<div className='col-md-4 my-3' key={element.url}>
                <NewsItem  title={element.title?element.title.slice(0,45):""} description={element.description?element.description.slice(0,88):""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name}/>
             </div>
