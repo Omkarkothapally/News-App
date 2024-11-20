@@ -17,15 +17,16 @@ const NewsItem =(props)=> {
                 <span className="visually-hidden">unread messages</span>
               </span>
             </div>
-          <img
-            src={
-              !imageUrl
-                ? "https://img.etimg.com/thumb/msid-108326970,width-1200,height-630,imgsize-52706,overlay-economictimes/photo.jpg"
-                : imageUrl
-            }
-            className="card-img-top"
-            alt="..."
-          />
+            <img
+  src={
+    !imageUrl
+      ? "https://img.etimg.com/thumb/msid-108326970,width-1200,height-630,imgsize-52706,overlay-economictimes/photo.jpg" // Fallback URL
+      : imageUrl
+  }
+  className="card-img-top"
+  alt="..."
+/>
+          
           <div className="card-body">
             <h5 className="card-title">
               {title}
