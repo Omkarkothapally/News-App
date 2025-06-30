@@ -1,7 +1,10 @@
 import React from "react";
-
+import Button from "./Button";
 const NewsItem =(props)=> {
+    const [isHidden, setIsHidden] = useState(false);
     let { title, description, imageUrl, newsUrl, author, date,source } = props;
+
+    if (isHidden) return null;
     return (
       <div className="my-3">
         <div className="card">
@@ -41,6 +44,9 @@ const NewsItem =(props)=> {
             <a href={newsUrl} target="_blank" className="btn btn-dark">
               Read More
             </a>
+                  <div className="mt-2">
+            <Button onClick={() => setIsHidden(true)} />
+          </div>
           </div>
         </div>
       </div>
